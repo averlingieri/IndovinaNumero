@@ -51,10 +51,9 @@ public class IndoNumeroController {
     void handleNuova(ActionEvent event) {
     	
     	this.segreto = (int)(Math.random()*NMAX) + 1 ;
-    	inGame = true ; 
+    	this.inGame = true ; 
     	
     	this.tentativi = 0 ;
-    	this.inGame = true ;
     	
     	btnNuova.setDisable(true);
     	boxGioco.setDisable(false);
@@ -81,6 +80,11 @@ public class IndoNumeroController {
     	try {
     		int num = Integer.parseInt(numS) ;
     		// numero era effettivamente numerico
+    		
+    		if (num < 1 || num > NMAX) {
+    			txtLog.appendText("Valore fuori dall'intevallo\n");
+    			return;
+    		}
     		
     		if (num == this.segreto) {
     			//ha indovinato
